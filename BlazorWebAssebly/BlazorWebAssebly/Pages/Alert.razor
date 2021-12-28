@@ -1,0 +1,20 @@
+﻿<h3>Alert</h3>
+@if (Show) {
+    <div class="dialog-container">
+        <div class="dialog">
+            <div>
+                @ChildContent
+            </div>
+            <div>
+                <button @onclick="OnOk">
+                    Ok
+                </button>
+            </div>
+        </div>
+    </div>
+}
+@code {
+    [Parameter] public bool Show { get; set; }
+    [Parameter] public EventCallback OnOk { get; set; }
+    [Parameter] public RenderFragment ChildContent { get; set; }
+}
