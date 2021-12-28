@@ -1,5 +1,4 @@
 ﻿@page "/"
-
 <!--Implicit Use of the ChildContent-->
 <Alert Show="showAlert1" OnOk="@(() => showAlert1 = false)">
     <h1>Alert 1</h1>
@@ -21,6 +20,9 @@
         <p>The time is @DateTime.Now</p>
     </ChildContent>
 </Alert>
+<button @onclick="@(() => showAlert2 = true)">
+    Press Me For Alert 2
+</button>
 <br />
 <br />
 <br />
@@ -32,9 +34,25 @@
     <h1>Alert 3</h1>
     <p>This is the third Example of a dialog using a Method for the delegate</p>
 </Alert>
+<button @onclick="@(() => showAlert3 = true)">
+    Press me for alert 3.
+</button>
+<br />
+<br />
+<br />
 
 
 
+<!--An Alert Component Using a custom css file to simulate a dialog box-->
+<Alert2 Show="showAlert4" OnOk="OkClickHandler2">
+    <ChildContent>
+        <h1>Alert 4</h1>
+        <p>This is an example of a simulated dialog box using css.</p>
+    </ChildContent>
+</Alert2>
+<button @onclick="@(() => showAlert4 = true)">
+    Press me to show alert 4
+</button>
 
 @code{
     private bool showAlert1 = false;
@@ -43,8 +61,15 @@
 
     private bool showAlert3 = false;
 
+    private bool showAlert4 = false;
+
     private void OkClickHandler()
     {
         showAlert3 = false;
+    }
+
+    private void OkClickHandler2()
+    {
+        showAlert4 = false;
     }
 }
