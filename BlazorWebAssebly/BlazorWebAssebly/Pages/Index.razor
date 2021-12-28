@@ -1,12 +1,50 @@
 ﻿@page "/"
-<Alert Show="showAlert" OnOk="@(() => showAlert = false)">
-    <h1>Alert</h1>
+
+<!--Implicit Use of the ChildContent-->
+<Alert Show="showAlert1" OnOk="@(() => showAlert1 = false)">
+    <h1>Alert 1</h1>
     <p>Today is @DateTime.Now.DayOfWeek.</p>
 </Alert>
-<button @onclick="@(() => showAlert = true)">
+<button @onclick="@(() => showAlert1 = true)">
     Show Alert
 </button>
+<br />
+<br />
+<br />
+
+
+
+<!--Using Child Content Explicitly-->
+<Alert Show="showAlert2" OnOk="(() => showAlert2 = false)">
+    <ChildContent>
+        <h1>Alert 2</h1>
+        <p>The time is @DateTime.Now</p>
+    </ChildContent>
+</Alert>
+<br />
+<br />
+<br />
+
+
+
+<!--Using a method instead of a delegate-->
+<Alert Show="showAlert3" OnOk="OkClickHandler">
+    <h1>Alert 3</h1>
+    <p>This is the third Example of a dialog using a Method for the delegate</p>
+</Alert>
+
+
+
 
 @code{
-    private bool showAlert = false;
+    private bool showAlert1 = false;
+
+    private bool showAlert2 = false;
+
+    private bool showAlert3 = false;
+
+    private void OkClickHandler()
+    {
+        showAlert3 = false;
+    }
 }
